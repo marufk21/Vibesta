@@ -26,7 +26,7 @@ const Login = () => {
         e.preventDefault();
         try {
             setLoading(true);
-            const res = await axios.post('//vibesta.onrender.com/api/v1/user/login', input, {
+            const res = await axios.post('//localhost:8000//api/v1/user/login', input, {
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -55,46 +55,57 @@ const Login = () => {
         }
     },[])
     return (
-        <div className='flex items-center w-screen h-screen justify-center'>
-            <form onSubmit={signupHandler} className='shadow-lg flex flex-col gap-5 p-8'>
-                <div className='my-4'>
-                    <h1 className='text-center font-bold text-xl'>Vibesta</h1>
-                    <p className='text-sm text-center'>Login to see photos & videos from your friends</p>
-                </div>
-                <div>
-                    <span className='font-medium'>Email</span>
-                    <Input
-                        type="email"
-                        name="email"
-                        value={input.email}
-                        onChange={changeEventHandler}
-                        className="focus-visible:ring-transparent my-2"
-                    />
-                </div>
-                <div>
-                    <span className='font-medium'>Password</span>
-                    <Input
-                        type="password"
-                        name="password"
-                        value={input.password}
-                        onChange={changeEventHandler}
-                        className="focus-visible:ring-transparent my-2"
-                    />
-                </div>
-                {
-                    loading ? (
-                        <Button>
-                            <Loader2 className='mr-2 h-4 w-4 animate-spin' />
-                            Please wait
-                        </Button>
-                    ) : (
-                        <Button type='submit'>Login</Button>
-                    )
-                }
+        <div className="flex items-center w-screen h-screen justify-center bg-gray-100">
+        <form 
+            onSubmit={signupHandler} 
+            className="shadow-lg flex flex-col gap-5 p-6 sm:p-8 border border-gray-200 rounded-md w-full max-w-sm bg-white"
+        >
+            <div className="my-4">
+                <h1 className="text-center font-bold text-xl">Vibesta</h1>
+                <p className="text-sm text-center text-gray-600">
+                    Login to see photos & videos from your friends
+                </p>
+            </div>
+            <div>
+                <label htmlFor="email" className="font-medium">Email</label>
+                <Input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={input.email}
+                    onChange={changeEventHandler}
+                    className="focus-visible:ring-transparent my-2 w-full border border-gray-300 rounded-md px-3 py-2"
+                />
+            </div>
+            <div>
+                <label htmlFor="password" className="font-medium">Password</label>
+                <Input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={input.password}
+                    onChange={changeEventHandler}
+                    className="focus-visible:ring-transparent my-2 w-full border border-gray-300 rounded-md px-3 py-2"
+                />
+            </div>
+            {loading ? (
+                <Button>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Please wait
+                </Button>
+            ) : (
+                <Button type="submit">Login</Button>
+            )}
+            <span className="text-center text-sm text-gray-600">
+                Don't have an account? 
+                <Link to="/signup" className="text-blue-600"> Signup</Link>
+            </span>
+        </form>
+    </div>
+    
+      
 
-                <span className='text-center'>Dosent have an account? <Link to="/signup" className='text-blue-600'>Signup</Link></span>
-            </form>
-        </div>
+      
     )
 }
 

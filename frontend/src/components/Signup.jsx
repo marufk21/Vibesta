@@ -56,55 +56,65 @@ const Signup = () => {
     }, [])
 
     return (
-        <div className='flex items-center w-screen h-screen justify-center'>
-            <form onSubmit={signupHandler} className='shadow-lg flex flex-col gap-5 p-8'>
-                <div className='my-4'>
-                    <h1 className='text-center font-bold text-xl'>Vibesta</h1>
-                    <p className='text-sm text-center'>Signup to see photos & videos from your friends</p>
+        <div className="flex items-center w-screen h-screen justify-center bg-gray-100">
+            <form
+                onSubmit={signupHandler}
+                className="shadow-lg flex flex-col gap-5 p-6 sm:p-8 border border-gray-200 rounded-md w-full max-w-sm bg-white"
+            >
+                <div className="my-4">
+                    <h1 className="text-center font-bold text-xl">Vibesta</h1>
+                    <p className="text-sm text-center text-gray-600">
+                        Signup to see photos & videos from your friends
+                    </p>
                 </div>
                 <div>
-                    <span className='font-medium'>Username</span>
+                    <label htmlFor="username" className="font-medium">Username</label>
                     <Input
                         type="text"
+                        id="username"
                         name="username"
                         value={input.username}
                         onChange={changeEventHandler}
-                        className="focus-visible:ring-transparent my-2"
+                        className="focus-visible:ring-transparent my-2 w-full border border-gray-300 rounded-md px-3 py-2"
                     />
                 </div>
                 <div>
-                    <span className='font-medium'>Email</span>
+                    <label htmlFor="email" className="font-medium">Email</label>
                     <Input
                         type="email"
+                        id="email"
                         name="email"
                         value={input.email}
                         onChange={changeEventHandler}
-                        className="focus-visible:ring-transparent my-2"
+                        className="focus-visible:ring-transparent my-2 w-full border border-gray-300 rounded-md px-3 py-2"
                     />
                 </div>
                 <div>
-                    <span className='font-medium'>Password</span>
+                    <label htmlFor="password" className="font-medium">Password</label>
                     <Input
                         type="password"
+                        id="password"
                         name="password"
                         value={input.password}
                         onChange={changeEventHandler}
-                        className="focus-visible:ring-transparent my-2"
+                        className="focus-visible:ring-transparent my-2 w-full border border-gray-300 rounded-md px-3 py-2"
                     />
                 </div>
-                {
-                    loading ? (
-                        <Button>
-                            <Loader2 className='mr-2 h-4 w-4 animate-spin' />
-                            Please wait
-                        </Button>
-                    ) : (
-                        <Button type='submit'>Signup</Button>
-                    )
-                }
-                <span className='text-center'>Already have an account? <Link to="/login" className='text-blue-600'>Login</Link></span>
+                {loading ? (
+                    <Button>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Please wait
+                    </Button>
+                ) : (
+                    <Button type="submit">Signup</Button>
+                )}
+                <span className="text-center text-sm text-gray-600">
+                    Already have an account?
+                    <Link to="/login" className="text-blue-600"> Login</Link>
+                </span>
             </form>
         </div>
+
     )
 }
 
