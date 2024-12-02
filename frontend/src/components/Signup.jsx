@@ -14,7 +14,7 @@ const Signup = () => {
         password: ""
     });
     const [loading, setLoading] = useState(false);
-    const {user} = useSelector(store=>store.auth);
+    const { user } = useSelector(store => store.auth);
     const navigate = useNavigate();
 
     const changeEventHandler = (e) => {
@@ -31,28 +31,29 @@ const Signup = () => {
                 },
                 withCredentials: true
             });
-            if (res.data.success) {
-                navigate("/login");
+
+            if (res.data && res.data.success) {
                 toast.success(res.data.message);
-                setInput({
-                    username: "",
-                    email: "",
-                    password: ""
-                });
+                setInput({ username: "", email: "", password: "" });
+                navigate("/login");
+            } else {
+                toast.error("Unexpected response from server.");
             }
         } catch (error) {
-            console.log(error);
-            toast.error(error.response.data.message);
+            console.error("Error during signup:", error);
+            const errorMessage = error?.response?.data?.message || "An error occurred. Please try again.";
+            toast.error(errorMessage);
         } finally {
             setLoading(false);
         }
-    }
+    };
 
-    useEffect(()=>{
-        if(user){
+
+    useEffect(() => {
+        if (user) {
             navigate("/");
         }
-    },[])
+    }, [])
     return (
         <div className='flex items-center w-screen h-screen justify-center'>
             <form onSubmit={signupHandler} className='shadow-lg flex flex-col gap-5 p-8'>
