@@ -55,7 +55,7 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      const socketio = io('http://vibesta.onrender.com', {
+      const socketio = io('//vibesta.onrender.com', {
         query: {
           userId: user?._id
         },
